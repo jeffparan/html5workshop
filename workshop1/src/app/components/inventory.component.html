@@ -1,5 +1,4 @@
 <form #inventoryForm="ngForm" (ngSubmit)="add(inventoryForm)">
-  Form invalid : {{ inventoryForm.invalid }}
 <table> 
 <tr>
     <td>
@@ -17,7 +16,7 @@
           Quantity :
       </div>
       <div>
-        <input type="number" name="quantity" min="1" ngModel required>
+        <input type="number" name="quantity" min="1" ngModel>
       </div>
       <button type="Submit">Add</button>
     </td>
@@ -25,3 +24,9 @@
 
 </table>
 </form>
+
+<ul>
+  <li *ngFor="let t of LineItem; let i = index">
+      {{ t.label }}
+  </li>
+</ul>
