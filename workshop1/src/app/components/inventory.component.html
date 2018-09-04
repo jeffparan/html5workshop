@@ -1,0 +1,27 @@
+<form #inventoryForm="ngForm" (ngSubmit)="add(inventoryForm)">
+  Form invalid : {{ inventoryForm.invalid }}
+<table> 
+<tr>
+    <td>
+      <div>
+          <select name="fruitList" (change)="displayFruit($event)" ngModel>
+              <option *ngFor="let f of fruitList; let i = index" [value]="i"  >{{ f.label }}</option>
+            </select>
+      </div>
+    <div>
+        <img [src]="fruitImg" class="thumbnail">      
+    </div>
+    </td>
+    <td>
+      <div>
+          Quantity :
+      </div>
+      <div>
+        <input type="number" name="quantity" min="1" ngModel required>
+      </div>
+      <button type="Submit">Add</button>
+    </td>
+</tr>
+
+</table>
+</form>
