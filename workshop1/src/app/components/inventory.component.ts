@@ -12,6 +12,7 @@ interface Fruit{
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css']
 })
+
 export class InventoryComponent implements OnInit {
 
   fruitList: Fruit[] = [
@@ -26,6 +27,9 @@ export class InventoryComponent implements OnInit {
 
   @Output()
   newLineItem = new EventEmitter<LineItem> ();
+
+  @Output()
+  deleteLineItem = new EventEmitter<LineItem>();
 
   constructor() { }
 
