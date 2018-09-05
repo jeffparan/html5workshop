@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { LineItem } from './model';
 
+export { LineItem } from './model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
