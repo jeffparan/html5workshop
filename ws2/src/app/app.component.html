@@ -6,6 +6,10 @@
 <app-address-entry (newAddress)="processAddress($event)"></app-address-entry>
 
 <mat-tab-group (selectedTabChange)="loadAddress($event)">
-    <mat-tab *ngFor="let t of tabs" [label]="t.label"> Some Content Here </mat-tab>
+    <mat-tab *ngFor="let t of tabs" [label]="t.label">
+        <mat-list>
+            <mat-list-item *ngFor="let a of adds"> {{ a.name }} </mat-list-item>
+        </mat-list>
+    </mat-tab>
 
 </mat-tab-group>

@@ -19,6 +19,8 @@ export class AppComponent  implements OnInit {
     { label : 'U - Z', pattern: /^[u-z].*/i }
   ];
 
+  adds: Address[] = [];
+
   //private addressSvc: AddressService;
   
   constructor(private addressSvc: AddressService) {
@@ -34,7 +36,6 @@ export class AppComponent  implements OnInit {
       console.error()
     })
   }
-
 
   processAddress(address: Address){
     console.log('address --- >>> ', address);
@@ -52,10 +53,20 @@ export class AppComponent  implements OnInit {
     //console.log('tab change : ', this.tabs[event.index].pattern);
     console.log('tab change : ', patt, typeof(patt));
     
+    this.adds = [];
+
     this.addressSvc.findAddress(patt)
     .then(addr => {
-      console.log('', addr)
+      console.log('', addr);
+        for (let a of addr)
+          this.adds.push({
+            name: a.name,
+            address: a.address,
+            phone: a.phone,
+            email: a.email
+          })
     })
+
     .catch(err => {
       console.error()
     })
