@@ -21,15 +21,27 @@ export class StarwarsStorageService{
         return (this.db['people'].put(data));
     }
 
-    findPeople(pattern: any): Promise<People[]>{
-        return (
-        this.db['people']
-            .orderBy('name')
-            .filter(peopl => {
-                return (pattern.test(peopl.name));
-            })
-            .toArray()
-        );
+    find(id: number): Promise<People>{
+        const p = new Promise<People>((resolve, reject) => {
+            this.db['people'].where('cid').equals(id)
+                .toArray()
+                .then((result: People[]) => {
+                    if (result.length > 0)
+                        resolve(result[0])
+                    else
+                        reject(id);
+                })
+        });
+        return (p);
+
+        // return (
+        // this.db['people']
+        //     .orderBy('name')
+        //     .filter(peopl => {
+        //         return (pattern.test(peopl.name));
+        //     })
+        //     .toArray()
+        // );
     }
 
 }
