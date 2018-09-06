@@ -4,7 +4,6 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 export interface Giphy {
 title: string;
 imageUrl: string;
-
 }
 
 @Injectable()
