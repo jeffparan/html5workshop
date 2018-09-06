@@ -21,6 +21,8 @@ export class AppComponent  implements OnInit {
 
   adds: Address[] = [];
 
+  currentTab = 0;
+
   //private addressSvc: AddressService;
   
   constructor(private addressSvc: AddressService) {
@@ -31,15 +33,10 @@ export class AppComponent  implements OnInit {
     this.adds = [];
       
     this.addressSvc.findAddress(this.tabs[0].pattern)
+    
     .then(addr => {
-      console.log('', addr);
-        for (let a of addr)
-          this.adds.push({
-            name: a.name,
-            address: a.address,
-            phone: a.phone,
-            email: a.email
-          })        
+      this.adds = addr;
+      console.log('', addr);      
     })
     .catch(err => {
       console.error()
@@ -58,6 +55,8 @@ export class AppComponent  implements OnInit {
   }
 
   loadAddress(event: MatTabChangeEvent){
+    this.currentTab = event.index;
+
     const patt = this.tabs[event.index].pattern;
     //console.log('tab change : ', this.tabs[event.index].pattern);
     console.log('tab change : ', patt, typeof(patt));
@@ -67,14 +66,8 @@ export class AppComponent  implements OnInit {
 
     this.addressSvc.findAddress(patt)
     .then(addr => {
+      this.adds = addr;
       console.log('', addr);
-        for (let a of addr)
-          this.adds.push({
-            name: a.name,
-            address: a.address,
-            phone: a.phone,
-            email: a.email
-          })
     })
 
     .catch(err => {
