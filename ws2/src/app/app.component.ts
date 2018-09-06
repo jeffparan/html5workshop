@@ -28,13 +28,22 @@ export class AppComponent  implements OnInit {
   }
 
   ngOnInit(){
+    this.adds = [];
+      
     this.addressSvc.findAddress(this.tabs[0].pattern)
     .then(addr => {
-      console.log('', addr)
+      console.log('', addr);
+        for (let a of addr)
+          this.adds.push({
+            name: a.name,
+            address: a.address,
+            phone: a.phone,
+            email: a.email
+          })        
     })
     .catch(err => {
       console.error()
-    })
+    })      
   }
 
   processAddress(address: Address){
@@ -53,6 +62,7 @@ export class AppComponent  implements OnInit {
     //console.log('tab change : ', this.tabs[event.index].pattern);
     console.log('tab change : ', patt, typeof(patt));
     
+    // show in mat list
     this.adds = [];
 
     this.addressSvc.findAddress(patt)
@@ -70,6 +80,7 @@ export class AppComponent  implements OnInit {
     .catch(err => {
       console.error()
     })
+    // show in mat list
   }
 
 }
