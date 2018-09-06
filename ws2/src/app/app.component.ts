@@ -47,6 +47,22 @@ export class AppComponent  implements OnInit {
     console.log('address --- >>> ', address);
     this.addressSvc.addNewAddress(address)
     .then(result => {
+      const patt = this.tabs[this.currentTab].pattern;
+
+        // show in mat list
+        this.adds = [];
+
+        this.addressSvc.findAddress(patt)
+        .then(addr => {
+          this.adds = addr;
+          console.log('', addr);
+        })
+
+        .catch(err => {
+          console.error()
+        })
+        // show in mat list
+
       console.log("saved: ", result);      
     })
     .catch(err => {
