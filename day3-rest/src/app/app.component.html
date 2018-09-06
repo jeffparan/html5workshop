@@ -1,0 +1,20 @@
+<mat-toolbar color="primary"> Giphy </mat-toolbar>
+
+<form #searchForm="ngForm" (ngSubmit)="search(searchForm)" fxLayout="row column" flexLayoutAlign="space-between center">
+  <input type="text" name="searchTerm" placeholder="what you want to seek?" required ngModel MatInput>
+
+  <button mat-raised-button color="accent" type="submit" [disabled]="searchForm.invalid">
+    <mat-icon  >
+      search
+    </mat-icon>
+  </button>
+</form>
+
+<mat-card *ngFor="let g of giphys">
+  <mat-card-header>
+    <mat-card-title>
+        {{ g.title }}
+    </mat-card-title>
+  </mat-card-header>
+  <img [src]="g.imageUrl" mat-card-image>
+</mat-card>
