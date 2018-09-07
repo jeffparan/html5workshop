@@ -15,64 +15,39 @@ export class AppComponent {
   @ViewChild('form')
   form: NgForm;
 
+  people: People = null;
+
   constructor(private starwarsSvc: StarWarsService, private starwarsStorageSvc: StarwarsStorageService){}
   //constructor(private starwarsStorageSvc: StarwarsStorageService){}
 
   search(){
     console.log('people ID : >>> ', this.form.value.peopleID);
     
+    this.people = null;
+
     this.starwarsStorageSvc.find(this.form.value.peopleID)
       .then(
         (result) => {
           console.log('from cache : >>> ', result);
+          this.people = result;
           return (null);
         },
-        this.starwarsSvc.searchPeople.bind(this.starwarsSvc)
-        // (err) => {
-        //   console.log('not found : >>> ', err);
-        // }
+        (id) => {
+          console.log('not in database : >>> ', id);
+          return (id)
+        }
       )
+      .then(this.starwarsSvc.searchPeople.bind(this.starwarsSvc))
+      .then((result:People) => {
+        console.log('this.people : >>> ', this.people);
+        this.people = this.people || result;
+        return (result);
+      })
       .then(this.starwarsStorageSvc.save.bind(this.starwarsStorageSvc))
       .catch(err => {
         console.log('error : >>> ', err);
       })
       
-        /*
-
-                .then(
-          (result) => {
-            this.starwarsStorageSvc.save.bind(this.starwarsStorageSvc)
-          }
-
-        )
-        .catch(err => {
-          console.log('error : >>> ', err);
-        })
-
-
-        .then(this.starwarsStorageSvc.save.bind(this.starwarsStorageSvc))
-        .catch(err => {
-          console.log('error : >>> ', err);
-        })
-
-
-
-        this.starwarsSvc.searchPeople(this.form.value.peopleID)
-      
-      .then(this.starwarsStorageSvc.save.bind(this.starwarsStorageSvc))
-      
-      // .then(result => {
-      //   console.log('result : >>> ', result);        
-      //   this.starwarsStorageSvc.save(result);
-      // })
-
-
-      .catch(err => {
-        console.log('result : >>> ', err);        
-      })
-
-    */
-    
     this.form.resetForm();
   }
 }
