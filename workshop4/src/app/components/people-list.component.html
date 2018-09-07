@@ -3,7 +3,7 @@
       <img src="assets/swicon.png" class="logo"> Star Wars 
   </span>
       
-  <button type="button" mat-icon-button color="accent">
+  <button type="button" mat-icon-button color="accent" (click)="add()" >
       <mat-icon>add_circle</mat-icon>
   </button>        
 </mat-toolbar>
@@ -12,8 +12,10 @@
     <h2 mat-subheader>Characters</h2>
 
     <a mat-list-item [routerLink]="['/detail', a.cid]" *ngFor="let a of people"> 
-        {{ a.name }} <br>
-        {{ a.cid }} 
+        {{ a.name }} ({{ a.cid }})
     </a>
-
 </mat-nav-list>  
+
+<!-- <div *ngFor="let a of people">
+        <a [routerLink]="['/detail', a.cid]" >{{ a.name }} ({{ a.cid }})</a>
+</div> -->

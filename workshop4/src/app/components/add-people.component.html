@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" fxLayout="row column" fxLayoutAlign="space-between center">     
+    <span fxLayout="row column" fxLayoutAlign="space-between center">
+        <img src="assets/swicon.png" class="logo"> Star Wars 
+    </span>
+        
+    <button type="button" mat-icon-button color="accent" (click)="back()" >
+        <mat-icon>cancel</mat-icon>
+    </button>        
+  </mat-toolbar>
+
+<form #form="ngForm" (ngSubmit)="add(form)" fxLayout="column row" fxLayoutGap="10px">
+  
+  <mat-form-field>
+      <input type="number" min="1" max="99" name="peopleID" placeholder="Enter a number between 1 - 88" required ngModel matInput>
+      <mat-hint>Star Wars people id. See <a href="https://swapi.co" target="_blank">swapi.com</a> </mat-hint>
+  </mat-form-field>
+
+  <div fxLayout="row column" fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-raised-button type="reset">
+        Clear
+    </button>
+
+    <button mat-raised-button color="warn" type="submit" [disabled]="form.invalid">
+        Add
+    </button>
+  </div>
+</form>

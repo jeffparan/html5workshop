@@ -10,13 +10,17 @@ import { ApprouteModule } from './approute.module';
 import { PeopleListComponent } from './components/people-list.component';
 import { StarWarsService } from './starwars.service';
 import { StarwarsStorageService } from './starwars.storage.service';
+import { AddPeopleComponent } from './components/add-people.component';
+import { PeopleListDetailComponent } from './components/people-list-detail.component';
 
 @NgModule({
-  declarations: [
+  declarations: [           //for components
     AppComponent,
-    PeopleListComponent
+    PeopleListComponent,
+    AddPeopleComponent,
+    PeopleListDetailComponent
   ],
-  imports: [
+  imports: [                //for modules
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -24,7 +28,7 @@ import { StarwarsStorageService } from './starwars.storage.service';
     HttpClientModule,
     ApprouteModule
   ],
-  providers: [StarWarsService, StarwarsStorageService],
+  providers: [StarWarsService, StarwarsStorageService], //for service
   bootstrap: [AppComponent]
 })
 export class AppModule { }
