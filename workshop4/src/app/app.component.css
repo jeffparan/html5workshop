@@ -1,0 +1,16 @@
+/* .outlet{
+    border: red solid 1px;
+    padding: 10px;
+} */
+
+.menuitem{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+.logo{
+    height: 50px;
+    margin-right: 10px;
+}

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" fxLayout="row column" fxLayoutAlign="space-between center">     
+  <span fxLayout="row column" fxLayoutAlign="space-between center">
+      <img src="assets/swicon.png" class="logo"> Star Wars 
+  </span>
+      
+  <button type="button" mat-icon-button color="accent">
+      <mat-icon>add_circle</mat-icon>
+  </button>        
+</mat-toolbar>
+
+<mat-nav-list>
+    <h2 mat-subheader>Characters</h2>
+
+    <a mat-list-item [routerLink]="['/detail', a.cid]" *ngFor="let a of people"> 
+        {{ a.name }} <br>
+        {{ a.cid }} 
+    </a>
+
+</mat-nav-list>  
