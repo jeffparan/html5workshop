@@ -16,11 +16,11 @@ export class AppComponent {
     console.log("cart = ", this.cart);
   }
 
-  deleteTheImage(data: LineItem) {
+  deleteTheImage(index: number) {
     //deleteTheImage(index: number) {
       //console.log("app.component: deleting the image", data);
-      //console.log("app.component: deleting the image", index);
-      // this.cart.splice( data.label, 1);      
+      console.log("app.component: deleting the image", index);
+      this.cart.splice(index, 1);      
     }
 
 }

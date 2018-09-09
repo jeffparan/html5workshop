@@ -3,7 +3,8 @@
 <app-inventory (newLineItem)="processLineItem($event)"> </app-inventory>
 
 <ul>
-    <li *ngFor="let t of cart; let i = index" >
-        {{ t.label }} - {{ t.quantity }}
+    <li *ngFor="let t of cart; let i = index" (click)="deleteTheImage(i)" >
+        {{ t.label }} - {{ t.quantity }} 
+        <button (click)="deleteTheImage(i)"> Delete </button>
     </li>
 </ul>
